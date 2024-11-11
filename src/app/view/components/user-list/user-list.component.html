@@ -1,0 +1,46 @@
+<div class="container mt-3">
+    <h2>Contacts Management Application</h2>
+    <button class="btn btn-success mb-3" (click)="onAddUser()">New</button>
+
+    <app-user-add-update *ngIf="openAddEdit == true" [user]="selectedUser"
+        (userSaved)="onUserSaved()"></app-user-add-update>
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <button class="btn btn-primary btn-sm" (click)="onEditUser(user)">Edit</button>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm" (click)="onDeleteUser(user.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+        <button (click)="onPageChange(pageNumber - 1)" [disabled]="pageNumber === 1">Previous</button>
+        <span>Page {{ pageNumber }} of {{ totalPages() }}</span>
+        <button (click)="onPageChange(pageNumber + 1)" [disabled]="pageNumber === totalPages()">Next</button>
+    </div>
+</div>
+
+<div *ngIf="users.length === 0">
+    <p>No users found.</p>
+</div>
