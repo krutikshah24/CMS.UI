@@ -1,5 +1,5 @@
 {
-  "name": "rsystem.task.ui",
+  "name": "CMS.UI",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
